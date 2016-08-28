@@ -56,7 +56,30 @@ PNG brighten(PNG original, int amount)
     for (size_t yi = 0; yi < original.height(); yi++) {
         for (size_t xi = 0; xi < original.width(); xi++) {
             /// Your code here!
-        }
+
+                int al = original(xi,yi)->alpha;
+				int re = original(xi,yi)->red;
+				int gr = original(xi,yi)->green;
+				int bl = original(xi,yi)->blue;
+
+                /*if((al+amount) <= 255){
+				  original(xi,yi)->alpha += amount;
+				  }
+				  else original(xi,yi)->alpha = 255;
+				*/
+				if((re+amount) <= 255)
+				original(xi,yi)->red += amount;
+				else original(xi,yi)->red = 255;
+
+				if((gr+amount) <= 255)
+				original(xi,yi)->green += amount;
+				else original(xi,yi)->green = 255;
+				
+				if((bl + amount) <= 255)
+				original(xi,yi)->blue += amount;
+				else original(xi,yi)->blue = 255;
+
+	}
     }
     return original;
 }
@@ -74,6 +97,22 @@ PNG brighten(PNG original, int amount)
 PNG blendImages(PNG firstImage, PNG secondImage)
 {
     /// Your code here!
+	for(size_t yi = 0; yi < firstImage.height(); yi++){
+		for (size_t xi = 0; xi < firstImage.width(); xi++) {
+			int ref = firstImage(xi,yi)->red;
+			int grf = firstImage(xi,yi)->green;
+			int blf = firstImage(xi,yi)->blue;
+
+			int res = secondImage(xi,yi)->red;
+			int grs = secondImage(xi,yi)->green;
+			int bls = secondImage(xi,yi)->blue;
+
+			firstImage(xi,yi)->red = (ref + res)/2;
+			firstImage(xi,yi)->green = (grf + grs)/2;
+			firstImage(xi,yi)->blue = (blf + bls)/2;
+		}
+	}
+	
     return firstImage;
 }
 

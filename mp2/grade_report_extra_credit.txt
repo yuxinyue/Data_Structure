@@ -1,0 +1,26 @@
+Grading r7669 by xyu69 committed on Mon Sep  5 15:43:46 CDT 2016
+Monad Autograder
+Testing mp2.1 at 2016-09-07 01:17:44
+
+"I never code in C++. But when I do, I use polymorphism and rand() functions." ~ Chaitanya Datye
+
+Setting up test environment...
+Compiling...
+================================================================
+
+
+Running tests...
+================================================================
+InvertColorsEven  . . [30 pts] - passed
+FlipLeftEven  . . . . [15 pts] - passed
+FlipLeftOdd . . . . . [15 pts] - passed
+AdjustBrightnessEven  [10 pts] - passed
+AdjustBrightnessEven2 [10 pts] - passed
+AdjustBrightnessEven3 [10 pts] - passed
+ImageMakefile . . . . [10 pts] - passed
+
+
+Total score...
+================================================================
+TOTAL SCORE: 100
+

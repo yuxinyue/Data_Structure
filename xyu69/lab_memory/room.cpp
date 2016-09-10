@@ -25,6 +25,8 @@ Room::Room(const Room& other)
     copy(other);
 }
 
+//WHY????????
+
 Room& Room::operator=(const Room& other)
 {
     if (this != &other) {
@@ -61,14 +63,22 @@ void Room::print()
 void Room::clear()
 {
     if (letters != NULL)
-        delete letters;
+        delete [] letters;
 }
 
 void Room::copy(const Room& other)
 {
+    clear();
     name = other.name;
     capacity = other.capacity;
     count = other.count;
     letterCount = other.letterCount;
-    letters = other.letters;
+// ERROR HERE
+// DEEP COPY
+// NO DECLARATION
+    letters = new Letter[26];   
+    for (int i = 0; i < 26; i++){
+
+    letters[i] = other.letters[i];
+    }
 }

@@ -1,0 +1,24 @@
+Grading r9829 by xyu69 committed on Sat Sep 10 16:09:22 CDT 2016
+Monad Autograder
+Testing lab_memory at 2016-09-12 00:56:02
+
+"It's like comparing a small apple with a medium-sized apple." ~ Jason Cho
+
+Setting up test environment...
+Compiling...
+================================================================
+
+
+Running tests...
+================================================================
+test_constructor (asan) [5 pts]  - passed
+test_allocate (asan)  . [5 pts]  - passed
+test_printrooms (asan)  [20 pts] - passed
+test_any_output . . . . [30 pts] - passed
+test_correct_output . . [40 pts] - passed
+
+
+Total score...
+================================================================
+TOTAL SCORE: 100
+

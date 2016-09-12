@@ -12,7 +12,7 @@
 
 #include "image.h"
 #include "scene.h"
-
+using namespace std;
 int main()
 {
     Scene* set = new Scene(5);
@@ -47,7 +47,7 @@ int main()
 
     delete set;
     set = new Scene(5);
-    *set = *sc;
+    *set = *sc;//operator
     result = set->drawscene();
     result.writeToFile("scene8.png"); // scene7 and scene8 should be the same.
     delete set;

@@ -2,13 +2,14 @@
 
 void Image::flipleft(){
 
-  int width = this->width();
+//THINK CALL WIDTH; INTERESTING
+  int width = PNG::width();
   int height = this->height();
 
   for(int j = 0; j < height; j++){
     for(int i = 0; i < (int)width/2; i++){
       
-      RGBAPixel temp = *(*this)(i, j);
+      RGBAPixel temp = *(*this)(i, j); //*Image::operator()(i, j);
       *(*this)(i,j) = *(*this)(width-1-i, j);
       *(*this)(width-1-i, j) = temp;
     }

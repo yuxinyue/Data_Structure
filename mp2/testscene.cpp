@@ -22,6 +22,11 @@ int main()
     Image result = set->drawscene();
     result.writeToFile("scene.png");
 
+/*  set->changemaxlayers(6);
+    result = set->drawscene();
+    result.writeToFile("scene.png");
+    delete set;
+*/
     set->changelayer(1, 3);
     result = set->drawscene();
     result.writeToFile("scene2.png");
@@ -44,6 +49,8 @@ int main()
     result.writeToFile("scene6.png"); // scene 5 and scene 6 should be the same
     result = sc->drawscene();
     result.writeToFile("scene7.png");
+
+// set->changemaxlayers(4);
 
     delete set;
     set = new Scene(5);

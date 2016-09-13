@@ -39,59 +39,78 @@ const Scene& Scene::operator=(const Scene & source){
 
 
 void Scene::changemaxlayers(int newmax){
-  
-  bool valid = true;
-  Image ** newArray = new Image*[newmax];
-  int *newXco = new int[newmax];
-  int *newYco = new int[newmax];
+  	
+	if(newmax == max) return;
+	Image ** newArray = new Image*[newmax];
+	int *newXco = new int[newmax];
+	int *newYco = new int[newmax];
 
-   if(newmax < max){
+	if(newmax < max){
 
-      for(int i = newmax; i < max; i++)
-      {
-	if (array[i] != NULL)
-        valid = false;
-	break;
-      } 
+		for(int i = newmax; i < max; i++)
+		{
+			if (array[i] != NULL)
+			{
+				/*delete*/
+				cout<<"invalid newmax"<<endl;
+				delete [] newArray;
+				delete [] newXco;
+				delete [] newYco;
+				return;
+			}
+		} 
 
-    if(!valid)
-    {
-    cout<<"invalid newmax"<<endl;
-    }else
-    {
-
-	for(int i = 0; i < max; i++)
-         {
-	    *newArray[i] = *array[i];
-	     newXco[i] = xco[i];
-	     newYco[i] = yco[i];	
-	 }
-    }
-   }
-    else 
+		for(int i = 0; i < newmax; i++)
+        	{
+			newArray[i] = array[i];
+		    	array[i] = NULL;
+		     	newXco[i] = xco[i];
+		     	newYco[i] = yco[i];	
+		 }
+ 	} 
+        else 
         {
 
-	for(int i = 0; i < max; i++)
-        {
-	    *newArray[i] = *array[i];
-	     newXco[i] = xco[i];
-	     newYco[i] = yco[i];
-	}
-	for(int i = max; i < newmax; i++)
-        {
-	    newArray[i] = NULL;
-	    newXco = 0;
-	    newYco = 0;
-	}
-    }
+		for(int i = 0; i < max; i++)
+        	{
+			newArray[i] = array[i];
+	    		array[i] = NULL;
+	     		newXco[i] = xco[i];
+	     		newYco[i] = yco[i];
+		}
+		for(int i = max; i < newmax; i++)
+        	{
+	    		newArray[i] = NULL;
+	    		newXco[i] = 0;
+	    		newYco[i] = 0;
+		}
+    	}
   //CLEAR!!!!!! how to use destructor?
-  clear();
-  array = newArray;
-  xco = newXco;
-  yco = newYco;
+/*	for(int i = 0; i<max; i++){
+		delete array[i];
+	}
+*/
+	delete [] array;
+  	array = NULL;
+  	delete [] xco;
+  	xco = NULL;
+  	delete [] yco;
+  	yco = NULL;
+  	array = newArray;
+  	xco = newXco;
+  	yco = newYco;
+  	max = newmax;
 }
 
 
+
+/*void Scene::changemaxlayers(int newmax){
+
+	if(newmax < max){
+		for 
+	}
+} 
+*/
 //????FileName?????????????? char* = string
 void Scene::addpicture(const char *FileName, int index, int x, int y){
 	
@@ -105,7 +124,7 @@ void Scene::addpicture(const char *FileName, int index, int x, int y){
 	if(array[index] != NULL){
 	delete array[index];
 //CHECK IF NEED!!!!!!!!!!!
-//	array[index] = NULL;
+	array[index] = NULL;
 	}
 
 	array[index] = image;
@@ -176,8 +195,11 @@ void Scene::deletepicture (int index){
 
 Image* Scene::getpicture (int index) const{
 
-        if((index < 0) | (index > (max-1)) | (array[index]==NULL))
+        if((index < 0) | (index > (max-1)) | (array[index]==NULL)){
         cout<<"invalid index"<<endl;
+	return NULL;
+	}	
+	else
 	return array[index];
 }
 

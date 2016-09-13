@@ -1,8 +1,8 @@
-Grading r10786 by xyu69 committed on Sun Sep 11 22:42:34 CDT 2016
+Grading r11542 by xyu69 committed on Mon Sep 12 22:20:23 CDT 2016
 Monad Autograder
-Testing mp2 at 2016-09-12 01:46:58
+Testing mp2 at 2016-09-13 00:33:05
 
-"The cheapest, fastest, and most reliable components of a computer system are those that aren't there." ~ Gordon Bell
+"There's not enough wiggleability, you know." ~ Eric Shaffer
 
 Setting up test environment...
 Compiling...
@@ -22,10 +22,10 @@ Valgrind1 (asan) . . . . . . . . . [5 pts] - passed
 AddPictureValidIndex . . . . . . . [2 pts] - passed
 AddPictureInvalidIndex . . . . . . [2 pts] - passed
 ImageAssignmentOperator  . . . . . [2 pts] - passed
-SceneGetPictureInvalidIndex  . . . [2 pts] - FAILED
-SceneChangeMaxLayersLarger . . . . [2 pts] - FAILED
-SceneChangeMaxLayersSmaller (asan) [1 pts] - FAILED
-SceneChangeMaxLayersInvalidChange  [2 pts] - FAILED
+SceneGetPictureInvalidIndex  . . . [2 pts] - passed
+SceneChangeMaxLayersLarger . . . . [2 pts] - passed
+SceneChangeMaxLayersSmaller (asan) [1 pts] - passed
+SceneChangeMaxLayersInvalidChange  [2 pts] - passed
 SceneCopyCtor  . . . . . . . . . . [2 pts] - passed
 SceneCopyCtor2 . . . . . . . . . . [2 pts] - passed
 SceneAssignmentOperator  . . . . . [2 pts] - passed
@@ -44,11 +44,11 @@ SceneTranslateInvalid  . . . . . . [2 pts] - passed
 SceneTranslateInvalid2 . . . . . . [1 pts] - passed
 SceneDeletePictureInvalid  . . . . [2 pts] - passed
 Valgrind2 (asan) . . . . . . . . . [5 pts] - passed
-Valgrind3 (asan) . . . . . . . . . [5 pts] - FAILED
+Valgrind3 (asan) . . . . . . . . . [5 pts] - passed
 SceneMakefile  . . . . . . . . . . [5 pts] - passed
 
 
 Total score...
 ================================================================
-TOTAL SCORE: 88
+TOTAL SCORE: 100
 

@@ -29,6 +29,12 @@ const RGBAPixel PISTIL_COLOR = color::YELLOW;
 const int PETAL_RADIUS = 2;
 const RGBAPixel PETAL_COLOR = color::RED;
 
+Flower::~Flower()
+{
+	delete stem;
+	delete pistil;
+	delete leaf;
+}
 Flower::Flower(const Vector2& center)
 {
     const Vector2 stem_center(center.x(), center.y() + STEM_HEIGHT / 2);

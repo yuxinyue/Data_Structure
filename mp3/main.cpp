@@ -148,6 +148,18 @@ void testReverseNth()
 
 void testWaterfall()
 {
+/*
+	List<int> list2;
+	for (size_t i = 1; i <= 10; i++)
+        list2.insertBack(i);
+
+    cout << "[testInserts]: " << list2 << endl;
+    cout << "[testInserts]: size: " << list2.size() << endl;
+    list2.waterfall();
+    cout << "[testInserts]: " << list2 << endl;
+    cout << "[testInserts]: size: " << list2.size() << endl;
+*/
+
     cout << "[main]: " << __func__ << "()" << endl;
     PNG in("in_05.png");
 
@@ -166,6 +178,7 @@ void testWaterfall()
     out.writeToFile("waterfall_02.png");
 
     checkSoln(__func__, out, "soln_waterfall_02.png");
+
 }
 
 void testSplit()

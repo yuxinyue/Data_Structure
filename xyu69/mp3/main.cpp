@@ -150,7 +150,7 @@ void testWaterfall()
 {
 /*
 	List<int> list2;
-	for (size_t i = 1; i <= 10; i++)
+	for (size_t i = 1; i <= 8; i++)
         list2.insertBack(i);
 
     cout << "[testInserts]: " << list2 << endl;

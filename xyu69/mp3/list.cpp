@@ -215,11 +215,13 @@ void List<T>::waterfall()
 	ListNode * front = head;
 	ListNode * back = curr->next;
 
-	while(back != NULL)
+	while(curr != tail)
 	{
-		insertBack( curr->data );
-		delete curr;
-		length--;
+		
+		curr->prev = tail;
+		curr->next = NULL;
+		tail->next = curr;
+		tail = curr;
 		curr = back->next;
 		front->next = back;
 		back->prev = front;

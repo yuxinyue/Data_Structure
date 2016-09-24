@@ -61,7 +61,6 @@ void testInserts()
     cout << "Start by uncommenting lines " << (__LINE__ + 3) << " through " << (__LINE__ + 26) << "." << endl;
 
     /* uncomment the below */
-    /*
     cout << "[main]: " << __func__ << "()" << endl;
     List<int> list;
 
@@ -84,11 +83,22 @@ void testInserts()
     cout << "[testInserts]: size: " << list2.size() << endl;
     if (list2.size() != 10)
         cout << "[testInserts]: Incorrect size" << endl;
-    */
 }
 
 void testReverse()
 {
+	/*
+	List<int> list2;
+	for (size_t i = 1; i <= 10; i++)
+        list2.insertBack(i);
+
+    cout << "[testInserts]: " << list2 << endl;
+    cout << "[testInserts]: size: " << list2.size() << endl;
+    list2.reverse();
+    cout << "[testInserts]: " << list2 << endl;
+    cout << "[testInserts]: size: " << list2.size() << endl;
+  */  
+
     cout << "[main]: " << __func__ << "()" << endl;
     PNG in("in_02.png");
 
@@ -99,10 +109,22 @@ void testReverse()
     out.writeToFile("reverse.png");
 
     checkSoln(__func__, out, "soln_reverse.png");
+
 }
 
 void testReverseNth()
 {
+
+/*	List<int> list2;
+	for (size_t i = 1; i <= 10; i++)
+        list2.insertBack(i);
+
+    cout << "[testInserts]: " << list2 << endl;
+    cout << "[testInserts]: size: " << list2.size() << endl;
+    list2.reverseNth(3);
+    cout << "[testInserts]: " << list2 << endl;
+    cout << "[testInserts]: size: " << list2.size() << endl;
+*/
     cout << "[main]: " << __func__ << "()" << endl;
     PNG in("in_03.png");
 
@@ -121,6 +143,7 @@ void testReverseNth()
     out.writeToFile("reverseNth_02.png");
 
     checkSoln(__func__, out, "soln_reverseNth_02.png");
+
 }
 
 void testWaterfall()

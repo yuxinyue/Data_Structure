@@ -122,6 +122,10 @@ template <class T>
 void List<T>::reverse(ListNode*& startPoint, ListNode*& endPoint)
 {
     /// @todo Graded in MP3.1
+    if(head == NULL)
+    return;
+    else
+    {
 	ListNode * temp1 = startPoint;
 	ListNode * temp2 = endPoint;
 	ListNode * begin = startPoint->prev;
@@ -159,6 +163,7 @@ void List<T>::reverse(ListNode*& startPoint, ListNode*& endPoint)
 	tail = temp1;
 	temp1->next = NULL;
 	}
+    }
 }
 
 
@@ -211,6 +216,10 @@ template <class T>
 void List<T>::waterfall()
 {
     /// @todo Graded in MP3.1
+    if(head == NULL)
+    return;
+    else
+    {
 	ListNode * curr = head->next;
 	ListNode * front = head;
 	ListNode * back = curr->next;
@@ -228,6 +237,7 @@ void List<T>::waterfall()
 		front = back;
 		back = curr->next;
 	}	
+    }
 }
 
 /**

@@ -17,6 +17,7 @@
  * Destroys the current List. This function should ensure that
  * memory does not leak on destruction of a list.
  */
+#include <iostream>
 template <class T>
 List<T>::~List()
 {
@@ -32,6 +33,21 @@ void List<T>::clear()
 {
     // @todo Graded in lab_gdb
     // Write this function based on mp3
+    	if( head != NULL)
+	{
+	ListNode * curr = head;
+	ListNode * prev = curr;
+	while( curr->next != NULL)
+	{
+		curr = curr->next;
+		delete prev;
+		prev = curr;
+	
+	}
+	delete curr;
+	head = NULL;
+	}
+	else return;
 }
 
 /**
@@ -45,6 +61,16 @@ void List<T>::insertFront(T const& ndata)
 {
     // @todo Graded in lab_gdb
     // Write this function based on mp3
+	ListNode * front = new ListNode(ndata);
+	if (head == NULL)
+	{
+	head = front;	
+	}
+	else{
+		front->next = head;
+		head = front;
+	}
+	length++;
 }
 
 /**
@@ -62,10 +88,11 @@ void List<T>::insertBack(const T& ndata)
 
     if (temp == NULL) {
         head = new ListNode(ndata);
+	length++;
     } else {
         while (temp->next != NULL)
             temp = temp->next;
-        temp = new ListNode(ndata);
+        temp->next = new ListNode(ndata);
         length++;
     }
 }
@@ -93,9 +120,10 @@ typename List<T>::ListNode* List<T>::reverse(ListNode* curr, ListNode* prev,
                                              int len)
 {
     // @todo Graded in lab_gdb
+    if(len == 0) return NULL;
     ListNode* temp;
-    if (len <= 0) {
-        curr->next = prev;
+    if (len <= 1) {
+        curr->next = prev; 
         return curr;
     } else {
         temp = reverse(curr->next, curr, len - 1);
@@ -120,20 +148,27 @@ void List<T>::shuffle()
     // Find the center, and split the list in half
     // one should point at the start of the first half-list
     // two should point at the start of the second half-list
+    if(head == NULL) return;
     ListNode *one, *two, *prev, *temp;
     one = two = prev = temp = head;
 
-    for (int i = 0; i < length / 2; i++) {
+    for (int i = 0; i < (length+1) / 2; i++) {
         prev = two;
         two = two->next;
     }
-    prev->next = NULL;
+   prev->next = NULL;
 
     // interleave
     while (two != NULL) {
+// cout<<two->data<<" "<<one->data<<endl;
         temp = one->next;
         one->next = two;
         two = two->next;
         one->next->next = temp;
+	one = temp;
     }
+    //cout<<two->data<<" "<<one->data<<endl;
+   // two->next = one->next;
+    //one->next = two;
+   // prev->next = two;
 }

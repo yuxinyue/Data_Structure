@@ -343,7 +343,52 @@ template <class T>
 typename List<T>::ListNode* List<T>::merge(ListNode* first, ListNode* second)
 {
     /// @todo Graded in MP3.2
-    return NULL; // change me!
+	if(first == NULL && second == NULL) return NULL;
+	if(first == NULL) return second;
+	if(second == NULL) return first; 
+
+	ListNode * newHead;
+	ListNode * curr;
+	if(first->data < second->data){
+		newHead =  first;
+		curr = first;
+		first = first->next;
+	}
+	else 
+	{
+		newHead = second;
+		curr = second;
+		second = second->next;
+	}
+	while(first != NULL && second != NULL)
+	{
+		if(first->data < second->data)
+		{
+			curr->next = first;
+			first->prev = curr;
+			curr = first;
+			first = first->next;
+		}
+		else
+		{
+			curr->next = second;
+			second->prev = curr;
+			curr= second;
+			second = second->next;		
+		}
+	}
+	if(first == NULL)
+	{
+		curr->next = second;
+		second->prev = curr;
+	}
+	else
+	{
+		curr->next = first;
+		first->prev = curr;
+	}
+    return  newHead;
+
 }
 
 /**

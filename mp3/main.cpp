@@ -233,12 +233,27 @@ void testSplit()
 
 void testMerge()
 {
+/*
+	List<int> list1;
+	List<int> list2;
+	for (size_t i = 14; i<= 16; i+=2)
+	list1.insertBack(i);
+	for (size_t i = 2; i <= 12; i+=2)
+        list2.insertBack(i);
+	
+    cout << "[testMerge]: " << list1 << endl;
+    cout << "[testMerge]: " << list2 << endl;
+//    cout << "[testInserts]: size: " << list2.size() << endl;
+	list1.mergeWith(list2);
+    cout << "[testMerge]: " <<list1 << endl;
+//    cout << "[testInserts]: size: " << list2.size() << endl;
+*/
     cout << "[main]: " << __func__ << "()" << endl;
 
     PNG im1("in_08.png");
     PNG im2("in_09.png");
     PNG out(600, 400);
-
+ 
     vector<RGBAPixel> v1;
     for (size_t i = 0; i < im1.width(); i++)
         for (size_t j = 0; j < im1.height(); j++)
@@ -261,6 +276,7 @@ void testMerge()
     out.writeToFile("merge.png");
 
     checkSoln(__func__, out, "soln_merge.png");
+
 }
 
 inline vector<int> buildVector(BlockPNG const& b, int d)
@@ -277,7 +293,7 @@ void testSort()
     cout << "[main]: " << __func__ << "()" << endl;
 
     srand(225);
-
+ 
     // read in image to be shuffled
     BlockPNG b;
     b.readFromFile("in_01.png");

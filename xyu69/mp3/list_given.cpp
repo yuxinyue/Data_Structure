@@ -86,11 +86,20 @@ void List<T>::copy(List<T> const& other)
 template <class T>
 void List<T>::print(ostream& os) const
 {
+	os<<"Head to Tail:";
     os << "<";
     ListNode* curr = head;
     while (curr != NULL) {
         os << " " << curr->data;
         curr = curr->next;
+    }
+    os << " >";
+	os<<"Tail to Head:";
+ os << "<";
+     curr = tail;
+    while (curr != NULL) {
+        os << " " << curr->data;
+        curr = curr->prev;
     }
     os << " >";
 }

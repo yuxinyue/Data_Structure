@@ -183,6 +183,21 @@ void testWaterfall()
 
 void testSplit()
 {
+/*
+	List<int> list2;
+	List<int> list1;
+	for (size_t i = 1; i <= 8; i++)
+        list2.insertBack(i);
+
+    cout << "[testInserts]: " << list2 << endl;
+    cout << "[testInserts]: size: " << list2.size() << endl;
+    list1 = list2.split(4);
+    cout << "[testInserts]: " << list2 << endl;
+    cout << "[testInserts]: size: " << list2.size() << endl;
+    cout << "[testInserts]: " << list1 << endl;
+    cout << "[testInserts]: size: " << list1.size() << endl;
+*/
+
     cout << "[main]: " << __func__ << "()" << endl;
 
     PNG in("in_07.png");
@@ -229,6 +244,7 @@ void testSplit()
     }
     out3.writeToFile("split_03.png");
     checkSoln(__func__, out3, "soln_split_03.png");
+
 }
 
 void testMerge()

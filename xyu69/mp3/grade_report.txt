@@ -1,8 +1,8 @@
-Grading r21200 by xyu69 committed on Mon Sep 26 21:42:59 CDT 2016
+Grading r21331 by enx-cs225autograder committed on Tue Sep 27 03:10:18 CDT 2016
 Monad Autograder
-Testing mp3 at 2016-09-27 02:30:39
+Testing mp3 at 2016-09-28 01:56:59
 
-"One day I will shoot you with this bullet. Can you still say that you love me?" ~ Re-l Mayer
+"I would build pyramids, if I were Pharoah." ~ Kyle Johnson
 
 Setting up test environment...
 Compiling...

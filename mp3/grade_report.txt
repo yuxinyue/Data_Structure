@@ -1,8 +1,8 @@
-Grading r21331 by enx-cs225autograder committed on Tue Sep 27 03:10:18 CDT 2016
+Grading r22038 by xyu69 committed on Wed Sep 28 20:23:33 CDT 2016
 Monad Autograder
-Testing mp3 at 2016-09-28 01:56:59
+Testing mp3 at 2016-09-29 02:07:14
 
-"I would build pyramids, if I were Pharoah." ~ Kyle Johnson
+"You *could* call it an ape, and that an ape, but that would just be phylogenic pettifogging." ~ D.A. Forsyth
 
 Setting up test environment...
 Compiling...
@@ -56,22 +56,22 @@ testMerge_backward . . . . . . . [1 pts]  - passed
 testMerge_mem (asan) . . . . . . [3 pts]  - passed
 testSort16p_s  . . . . . . . . . [1 pts]  - passed
 testSort16p_f  . . . . . . . . . [2 pts]  - passed
-testSort16p_b  . . . . . . . . . [2 pts]  - FAILED
+testSort16p_b  . . . . . . . . . [2 pts]  - passed
 testSort20p_s  . . . . . . . . . [1 pts]  - passed
 testSort20p_f  . . . . . . . . . [2 pts]  - passed
-testSort20p_b  . . . . . . . . . [2 pts]  - FAILED
+testSort20p_b  . . . . . . . . . [2 pts]  - passed
 testSort27p_s  . . . . . . . . . [1 pts]  - passed
 testSort27p_f  . . . . . . . . . [2 pts]  - passed
-testSort27p_b  . . . . . . . . . [2 pts]  - FAILED
+testSort27p_b  . . . . . . . . . [2 pts]  - passed
 testSortEmpty  . . . . . . . . . [5 pts]  - passed
 testSort259p_s . . . . . . . . . [1 pts]  - passed
 testSort259p_f . . . . . . . . . [2 pts]  - passed
-testSort259p_b . . . . . . . . . [2 pts]  - FAILED
-testSortMemLeak (asan) . . . . . [5 pts]  - FAILED
+testSort259p_b . . . . . . . . . [2 pts]  - passed
+testSortMemLeak (asan) . . . . . [5 pts]  - passed
 testSortNlogN  . . . . . . . . . [10 pts] - passed
 
 
 Total score...
 ================================================================
-TOTAL SCORE: 87
+TOTAL SCORE: 100
 

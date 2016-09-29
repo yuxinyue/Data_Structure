@@ -307,6 +307,7 @@ typename List<T>::ListNode* List<T>::split(ListNode* start, int splitPoint)
 		curr = curr->next;
 	}
 	newStart = curr->next;
+	newStart->prev = NULL;//!!!
 	curr->next = NULL;
 	return newStart; // change me!
 }

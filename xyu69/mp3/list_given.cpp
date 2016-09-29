@@ -94,6 +94,7 @@ void List<T>::print(ostream& os) const
         curr = curr->next;
     }
     os << " >";
+
 	os<<"Tail to Head:";
  os << "<";
      curr = tail;
@@ -102,6 +103,7 @@ void List<T>::print(ostream& os) const
         curr = curr->prev;
     }
     os << " >";
+
 }
 
 // overloaded operator<<

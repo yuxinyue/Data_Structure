@@ -306,6 +306,19 @@ inline vector<int> buildVector(BlockPNG const& b, int d)
 
 void testSort()
 {
+/*
+	List<int> list2;
+	for (size_t i = 8; i >0; i--)
+        list2.insertBack(i);
+
+    cout << "[testInserts]: " << list2 << endl;
+    cout << "[testInserts]: size: " << list2.size() << endl;
+    list2.sort();
+    cout << "[testInserts]: " << list2 << endl;
+    cout << "[testInserts]: size: " << list2.size() << endl;
+
+*/
+
     cout << "[main]: " << __func__ << "()" << endl;
 
     srand(225);
@@ -350,6 +363,7 @@ void testSort()
     b3.writeToFile("unshuffled_1.png");
 
     checkSoln("testSort", b3, "in_01.png");
+
 }
 
 void testMP31()

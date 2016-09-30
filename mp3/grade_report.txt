@@ -1,8 +1,8 @@
-Grading r22038 by xyu69 committed on Wed Sep 28 20:23:33 CDT 2016
+Grading r22389 by enx-cs225autograder committed on Thu Sep 29 02:34:37 CDT 2016
 Monad Autograder
-Testing mp3 at 2016-09-29 02:07:14
+Testing mp3 at 2016-09-30 02:16:51
 
-"You *could* call it an ape, and that an ape, but that would just be phylogenic pettifogging." ~ D.A. Forsyth
+"Even if by chance this world should end tomorrow, if it's together with you, would 'I'm okay with that too' be the cool attitude you'd take?" ~ Makino Yui
 
 Setting up test environment...
 Compiling...

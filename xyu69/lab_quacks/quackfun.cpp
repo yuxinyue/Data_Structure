@@ -3,6 +3,8 @@
  * This is where you will implement the required functions for the
  *  stacks and queues portion of the lab.
  */
+#include <iostream>
+using namespace std;
 
 namespace QuackFun {
 
@@ -26,7 +28,14 @@ template <typename T>
 T sum(stack<T>& s)
 {
     // Your code here
-    return T(); // stub return value (0 for primitive types). Change this!
+	if(s.empty()) return 0;
+	T temp = s.top();
+	s.pop();
+    	T add = temp + sum(s);
+	s.push(temp);
+	return add;
+
+ // stub return value (0 for primitive types). Change this!
                 // Note: T() is the default value for objects, and 0 for
                 // primitive types
 }
@@ -46,11 +55,68 @@ T sum(stack<T>& s)
 template <typename T>
 void scramble(queue<T>& q)
 {
-    stack<T> s;
-    // optional: queue<T> q2;
-
+        queue<T> q2;
+ 
     // Your code here
+
+	int i = 1;
+	while((int) q.size() >= i)
+	{
+		if(i%2 != 0)
+		{
+			for(int j = 0; j < i; j++)
+			{
+				T temp = q.front();
+				q.pop();
+				q2.push(temp);
+			}	
+		}
+		else
+		{
+			stack<T> s;
+			for(int j = 0; j < i; j++)
+			{
+				s.push(q.front());
+				q.pop();
+			}
+			while(!s.empty())
+			{
+				q2.push(s.top());
+				s.pop();
+			}
+		}
+		
+	i++;
+	}
+
+	int size = q.size();
+	if(i %2 != 0)
+	{
+		for(int j = 0; j < size; j++)
+		{
+			T temp = q.front();
+			q.pop();
+			q2.push(temp);
+		}		
+	}
+	else
+	{
+		stack<T> s;
+		for(int j = 0; j < size; j++)
+		{
+			s.push(q.front());
+			q.pop();
+
+		}
+		while(!s.empty())
+		{
+			q2.push(s.top());
+			s.pop();
+		}
+	}		
+	q = q2;
 }
+
 
 /**
  * @return true if the parameter stack and queue contain only elements of
@@ -69,10 +135,10 @@ void scramble(queue<T>& q)
 template <typename T>
 bool verifySame(stack<T>& s, queue<T>& q)
 {
-    bool retval = true; // optional
-    //T temp1; // rename me
-    //T temp2; // rename :)
-
+	bool retval = true;
+	
+	retval = retval && verifySame(s, q);
+	
     return retval;
 }
 

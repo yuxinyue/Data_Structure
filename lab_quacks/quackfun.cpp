@@ -60,24 +60,25 @@ void scramble(queue<T>& q)
     // Your code here
 
 	int i = 1;
-	while((int) q.size() >= i)
-	{
-		if(i%2 != 0)
-		{
-			for(int j = 0; j < i; j++)
-			{
-				T temp = q.front();
-				q.pop();
-				q2.push(temp);
+	int sum = 0;
+	int size = q.size();
+	while(sum<= size){
+		if(i%2 != 0){
+			for(int j = 0; j < i; j++){
+				if(!q.empty()){
+					T temp = q.front();
+					q.pop();
+					q2.push(temp);
+				}
 			}	
 		}
-		else
-		{
+		else{
 			stack<T> s;
-			for(int j = 0; j < i; j++)
-			{
-				s.push(q.front());
-				q.pop();
+			for(int j = 0; j < i; j++){
+				if(!q.empty()){
+					s.push(q.front());
+					q.pop();
+				}
 			}
 			while(!s.empty())
 			{
@@ -85,11 +86,12 @@ void scramble(queue<T>& q)
 				s.pop();
 			}
 		}
-		
+	sum += i;	
 	i++;
 	}
-
-	int size = q.size();
+	q = q2;
+}
+/*	int size = q.size();
 	if(i %2 != 0)
 	{
 		for(int j = 0; j < size; j++)
@@ -114,8 +116,8 @@ void scramble(queue<T>& q)
 			s.pop();
 		}
 	}		
-	q = q2;
-}
+*/
+	
 
 
 /**

@@ -6,17 +6,17 @@ Scores
 
   Problem                   Points
   ----------------------- --------
-  constructors-1b                4
-  constructors-3b                4
-  km-arrays-1c                   4
-  km-declarationopts-1a          4
-  km-firstclass-1d               4
-  km-makefile-2c                 0
-  km-pointersintro-3a            4
-  passbyvalue-5a                 4
-  rtriangle                     18
+  constructors-1b              4.0
+  constructors-3b              4.0
+  km-arrays-1c                 4.0
+  km-firstclass-1d             4.0
+  km-pointersintro-3a          4.0
+  passbyvalue-5a               4.0
+  km-declarationopts-1a        4.0
+  km-makefile-2c               3.2
+  rtriangle                   18.0
 
-Total score: 46/50 (92%)
+Total score: 49.2/50 (98.4%)
 
 Code Problem Test Output
 ------------------------

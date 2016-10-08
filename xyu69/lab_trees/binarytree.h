@@ -144,6 +144,14 @@ class BinaryTree
      *  as examples.
      */
 
+
+	void mirror( Node* subRoot) const;
+	
+	void isOrdered(const Node* subRoot, vector<T> & myvec) const;
+
+	void printPaths(const Node * subRoot, vector<T> & myvec) const;
+	
+	int sumDistances(Node * subRoot,int dist) const;
     /**
      * Private helper function for the public height function.
      * @param subRoot The current node in the recursion

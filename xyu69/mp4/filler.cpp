@@ -15,7 +15,8 @@ animation filler::dfs::fillSolid(PNG& img, int x, int y, RGBAPixel fillColor,
      * @todo Your code here! You should replace the following line with a
      * correct call to fill with the correct colorPicker parameter.
      */
-    return animation();
+	solidColorPicker para(fillColor);
+    return filler::dfs::fill(img, x, y, para, tolerance, frameFreq);
 }
 
 animation filler::dfs::fillGrid(PNG& img, int x, int y, RGBAPixel gridColor,
@@ -25,7 +26,8 @@ animation filler::dfs::fillGrid(PNG& img, int x, int y, RGBAPixel gridColor,
      * @todo Your code here! You should replace the following line with a
      * correct call to fill with the correct colorPicker parameter.
      */
-    return animation();
+	gridColorPicker para(gridColor, gridSpacing);
+    return filler::dfs::fill(img, x, y, para, tolerance, frameFreq);
 }
 
 animation filler::dfs::fillGradient(PNG& img, int x, int y,
@@ -36,7 +38,8 @@ animation filler::dfs::fillGradient(PNG& img, int x, int y,
      * @todo Your code here! You should replace the following line with a
      * correct call to fill with the correct colorPicker parameter.
      */
-    return animation();
+	gradientColorPicker para(fadeColor1, fadeColor2, radius, x, y);
+    return filler::dfs::fill(img, x, y, para, tolerance, frameFreq);
 }
 
 animation filler::dfs::fill(PNG& img, int x, int y, colorPicker& fillColor,
@@ -47,7 +50,7 @@ animation filler::dfs::fill(PNG& img, int x, int y, colorPicker& fillColor,
      * correct call to filler::fill with the correct template parameter
      * indicating the ordering structure to be used in the fill.
      */
-    return animation();
+    return filler::fill<Stack>(img, x, y, fillColor, tolerance, frameFreq);
 }
 
 animation filler::bfs::fillSolid(PNG& img, int x, int y, RGBAPixel fillColor,
@@ -57,7 +60,8 @@ animation filler::bfs::fillSolid(PNG& img, int x, int y, RGBAPixel fillColor,
      * @todo Your code here! You should replace the following line with a
      * correct call to fill with the correct colorPicker parameter.
      */
-    return animation();
+	solidColorPicker para(fillColor);
+    return filler::bfs::fill(img, x, y, para, tolerance, frameFreq);
 }
 
 animation filler::bfs::fillGrid(PNG& img, int x, int y, RGBAPixel gridColor,
@@ -67,7 +71,8 @@ animation filler::bfs::fillGrid(PNG& img, int x, int y, RGBAPixel gridColor,
      * @todo Your code here! You should replace the following line with a
      * correct call to fill with the correct colorPicker parameter.
      */
-    return animation();
+	gridColorPicker para(gridColor, gridSpacing);
+    return filler::bfs::fill(img, x, y, para, tolerance, frameFreq);
 }
 
 animation filler::bfs::fillGradient(PNG& img, int x, int y,
@@ -78,7 +83,8 @@ animation filler::bfs::fillGradient(PNG& img, int x, int y,
      * @todo Your code here! You should replace the following line with a
      * correct call to fill with the correct colorPicker parameter.
      */
-    return animation();
+	gradientColorPicker para(fadeColor1, fadeColor2, radius, x, y);
+    return filler::bfs::fill(img, x, y, para, tolerance, frameFreq);
 }
 
 animation filler::bfs::fill(PNG& img, int x, int y, colorPicker& fillColor,
@@ -89,9 +95,12 @@ animation filler::bfs::fill(PNG& img, int x, int y, colorPicker& fillColor,
      * correct call to filler::fill with the correct template parameter
      * indicating the ordering structure to be used in the fill.
      */
-    return animation();
+    return filler::fill<Queue>(img, x, y, fillColor, tolerance, frameFreq); 
 }
-
+int pow(int a){
+	int x= a;
+	return x*x;
+}
 template <template <class T> class OrderingStructure>
 animation filler::fill(PNG& img, int x, int y, colorPicker& fillColor,
                        int tolerance, int frameFreq)
@@ -150,5 +159,68 @@ animation filler::fill(PNG& img, int x, int y, colorPicker& fillColor,
      *        have been checked. So if frameFreq is set to 1, a pixel should
      *        be filled every frame.
      */
-    return animation();
+	animation ani;
+	int width = img.width();
+	int height = img.height();
+    OrderingStructure<int> sx;
+	OrderingStructure<int> sy;
+	bool ** visit = new bool*[width];
+	for(int i = 0; i < width; i++){
+		visit[i] = new bool[height];
+		for(int j = 0; j < height; j++)
+			visit[i][j] = false;
+	}
+	
+	sx.add(x);
+	sy.add(y);
+	int sum = 0;	
+	RGBAPixel orig = *img(x,y);
+
+//	add starting point to x and y
+	while (!sx.isEmpty()){
+
+	//	remove x-coord from x
+		//remove y-coord from y
+		//if visited continue
+		//mark s as visited
+		int curx = sx.remove();
+		int cury = sy.remove();
+	//cout<<curx<<" "<<cury<<endl;
+		if(visit[curx][cury] ) continue;
+		bool toler = false;
+		int dist = pow((int)(img(curx, cury)->red)-orig.red)+pow((int)(img(curx, cury)->green)-orig.green)
+			+pow((int)(img(curx, cury)->blue)-orig.blue);
+		if( dist> tolerance)
+
+			toler = true;
+		if(toler) continue;
+		*img(curx, cury) = fillColor(curx,cury);
+		visit[curx][cury] = true;
+		sum++;
+		if(curx+1 < width){		
+			sx.add(curx+1);
+			sy.add(cury);
+		}
+		if(cury+1 < height){		
+			sx.add(curx);
+			sy.add(cury+1);
+		}
+		if(curx-1 >= 0){
+			sx.add(curx-1);
+			sy.add(cury);
+		}
+		if(cury-1 >= 0){
+			sx.add(curx);
+			sy.add(cury-1);
+		}
+		if(sum % frameFreq == 0) ani.addFrame(img);
+
+	}  
+//clean up memory
+	for(int i =0; i < width; i++){
+		delete[] visit[i];
+	}
+	delete [] visit;
+
+    return ani;
 }

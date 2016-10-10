@@ -1,0 +1,23 @@
+Grading r28982 by xyu69 committed on Sat Oct  8 17:44:26 CDT 2016
+Monad Autograder
+Testing lab_trees at 2016-10-10 00:24:12
+
+"I hope this code makes sense when I wake up." ~ Jason Cho
+
+Setting up test environment...
+Compiling...
+================================================================
+
+
+Running tests...
+================================================================
+test_isOrdered  . [33 pts] - passed
+test_mirror . . . [33 pts] - passed
+test_printPaths . [34 pts] - passed
+test_sumDistances [25 pts] - passed
+
+
+Total score...
+================================================================
+TOTAL SCORE: 125
+

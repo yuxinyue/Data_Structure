@@ -1,8 +1,8 @@
-Grading r30880 by enx-cs225autograder committed on Wed Oct 12 02:22:54 CDT 2016
+Grading r31411 by enx-cs225autograder committed on Thu Oct 13 02:37:19 CDT 2016
 Monad Autograder
-Testing mp4 at 2016-10-13 02:19:47
+Testing mp4 at 2016-10-14 02:05:43
 
-"C makes it easy to shoot yourself in the foot. C++ makes it harder, but when you do, you blow away your whole leg!" ~ Bjarne Stroustrup
+"To iterate is human, to recurse divine." ~ L. Peter Deutsch
 
 Setting up test environment...
 Compiling...

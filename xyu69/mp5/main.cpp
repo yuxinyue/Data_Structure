@@ -24,7 +24,7 @@ int main()
     // now for the real tests
     Quadtree fullTree;
     fullTree.buildTree(imgIn, 256);
-    RGBAPixel r = fullTree.getPixel(3, 3);
+    //RGBAPixel r = fullTree.getPixel(3, 3);
     // you may want to experiment with different commands in this section
 
     // test pruneSize and idealPrune (slow in valgrind, so you may want to

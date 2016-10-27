@@ -107,13 +107,13 @@ RGBAPixel Quadtree::getPixel (int x, int y) const{
 RGBAPixel Quadtree::helpGetPixel(QuadtreeNode* qroot, int x, int y)const{
     if( qroot->nwChild == NULL) return qroot->element;
     int resolution = qroot->resolution;
-    if(qroot->x < x+resolution/2 && qroot->y < y+resolution/2)
+    if(x < qroot->x+resolution/2 && y < qroot->y+resolution/2)
         return helpGetPixel(qroot->nwChild, x, y);
-    if(qroot->x >= x+resolution/2 && qroot->y < y+resolution/2)
+    if(x >= qroot->x+resolution/2 && y < qroot->y+resolution/2)
         return helpGetPixel(qroot->nwChild, x, y);
-    if(qroot->x < x+resolution/2 && qroot->y >= y+resolution/2)
+    if(x < qroot->x+resolution/2 && y >= qroot->y+resolution/2)
         return helpGetPixel(qroot->swChild, x, y);
-    if(qroot->x >= x+resolution/2 && qroot->y >= y+resolution/2)
+    if(x >= qroot->x+resolution/2 && y >= qroot->y+resolution/2)
         return helpGetPixel(qroot->seChild, x, y);
     return RGBAPixel();
 }

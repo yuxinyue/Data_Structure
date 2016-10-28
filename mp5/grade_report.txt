@@ -1,8 +1,8 @@
-Grading r39077 by enx-cs225autograder committed on Wed Oct 26 01:36:39 CDT 2016
+Grading r39441 by xyu69 committed on Thu Oct 27 17:23:10 CDT 2016
 Monad Autograder
-Testing mp5 at 2016-10-27 01:26:44
+Testing mp5 at 2016-10-28 01:24:41
 
-"@return A voidean value indicating whether the test was successful." ~ lab_avl
+"Who dares to teach must never cease to learn." ~ J.C. Dana
 
 Setting up test environment...
 Compiling...
@@ -26,8 +26,8 @@ test_assign_op_2 . . . . . [1 pts] - passed
 test_assign_op_3 . . . . . [1 pts] - passed
 test_assign_op_4 . . . . . [1 pts] - passed
 test_getPixel_1  . . . . . [1 pts] - passed
-test_getPixel_2  . . . . . [2 pts] - FAILED
-test_getPixel_3  . . . . . [2 pts] - FAILED
+test_getPixel_2  . . . . . [2 pts] - passed
+test_getPixel_3  . . . . . [2 pts] - passed
 test_getPixel_4  . . . . . [2 pts] - FAILED
 test_decompress_unpruned_1 [1 pts] - passed
 test_decompress_unpruned_2 [1 pts] - passed
@@ -64,5 +64,5 @@ test_const_correctness . . [4 pts] - passed
 
 Total score...
 ================================================================
-TOTAL SCORE: 47
+TOTAL SCORE: 51
 

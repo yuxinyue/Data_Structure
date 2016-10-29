@@ -4,7 +4,8 @@
  * @date Spring 2008
  */
 #include "quadtree.h"
-
+using std::cout;
+using std::endl;
 
 Quadtree::Quadtree (){
 	root = NULL;
@@ -140,15 +141,103 @@ void Quadtree::helpDecompress (QuadtreeNode* qroot, PNG & image) const{
     helpDecompress(qroot->seChild, image);
     return;
 }
-int Quadtree::pruneSize( int tolerance )  const{
-    return 0;
-}
-int Quadtree::idealPrune  (   int   numLeaves )   const{
-    return 0;
-}
+
 void Quadtree::clockwiseRotate  (     )   {
+    if(root == NULL) return;
+    helpClockwiseRotate(root);
+    changeXY(root, 0, 0);
+}
+
+void Quadtree::helpClockwiseRotate(QuadtreeNode * qroot){
+    if(qroot->nwChild == NULL) return;
+  helpClockwiseRotate(qroot->nwChild);
+    helpClockwiseRotate(qroot->neChild);
+    helpClockwiseRotate(qroot->swChild);
+    helpClockwiseRotate(qroot->seChild);
+    
+    QuadtreeNode * temp = qroot->nwChild;
+    qroot->nwChild = qroot->swChild;
+    qroot->swChild = qroot->seChild;
+    qroot->seChild = qroot->neChild;
+    qroot->neChild = temp;
+
+} 
+
+void Quadtree::changeXY(QuadtreeNode * qroot, int x, int y){
+    if(qroot == NULL) return;
+    qroot->x = x;
+    qroot->y = y;
+    changeXY(qroot->nwChild, x, y);
+    changeXY(qroot->neChild, x + qroot->resolution/2, y);
+    changeXY(qroot->swChild, x, y + qroot->resolution/2);
+    changeXY(qroot->seChild, x + qroot->resolution/2, y + qroot->resolution/2);
 
 }
+
 void Quadtree::prune  (   int   tolerance )   {
-
+    if(root == NULL) return;
+    helpPrune(root, tolerance);
 }
+
+void Quadtree::helpPrune(QuadtreeNode * qroot, int tolerance){
+    if(qroot->nwChild == NULL) return;
+    if(ifPruned(qroot, tolerance, qroot->element)){
+        clear(qroot->nwChild);
+        clear(qroot->neChild);
+        clear(qroot->swChild);
+        clear(qroot->seChild);
+        return;        
+    }
+    helpPrune(qroot->nwChild, tolerance);
+    helpPrune(qroot->neChild, tolerance);
+    helpPrune(qroot->swChild, tolerance);
+    helpPrune(qroot->seChild, tolerance);
+}
+
+bool Quadtree::ifPruned(QuadtreeNode * qroot, int tolerance, RGBAPixel base) const{
+    if(qroot->nwChild == NULL){
+        bool diff = tolerance >= (qroot->element.red - base.red)*(qroot->element.red - base.red) 
+                                + (qroot->element.green - base.green)*(qroot->element.green - base.green)
+                                + (qroot->element.blue - base.blue)*(qroot->element.blue - base.blue);
+        return diff;
+    }
+    return ifPruned(qroot->nwChild, tolerance, base) && ifPruned(qroot->neChild, tolerance, base)
+            && ifPruned(qroot->swChild, tolerance, base) && ifPruned(qroot->seChild, tolerance, base);
+}
+
+int Quadtree::pruneSize( int tolerance )  const{
+    return helpPruneSize(root, tolerance);
+}
+
+int Quadtree::helpPruneSize(QuadtreeNode * qroot, int tolerance) const{
+    if(qroot->nwChild == NULL) return 1;
+    if(ifPruned(qroot, tolerance, qroot->element)){
+        return 1;        
+    }
+    return helpPruneSize(qroot->nwChild, tolerance) + helpPruneSize(qroot->neChild, tolerance)
+        + helpPruneSize(qroot->swChild, tolerance) + helpPruneSize(qroot->seChild, tolerance);
+}
+
+int Quadtree::idealPrune  (   int   numLeaves )   const{
+    int low = 0;
+    int high = 3*255*255;
+    int tolerance;
+    while(low < high){
+        tolerance = (high + low)/2;
+        //cout<<low <<" "<<high<<" "<<pruneSize(tolerance)<<endl;
+        if(pruneSize(tolerance) == numLeaves) {
+            while(pruneSize(tolerance-1) == numLeaves)
+            tolerance = tolerance-1;
+            return tolerance;
+        }
+        if(pruneSize(tolerance) > numLeaves){
+            low = tolerance+1;
+        } 
+        else{
+            high = tolerance;
+        }
+    }
+    if (pruneSize(tolerance)<numLeaves) return tolerance;
+    else  return tolerance+1; 
+}
+

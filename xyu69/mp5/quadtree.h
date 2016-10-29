@@ -27,10 +27,12 @@ class Quadtree
     void buildTree (PNG const &source, int resolution);
     RGBAPixel getPixel (int x, int y) const;
     PNG decompress () const;
-    int pruneSize( int tolerance )  const;
-    int idealPrune  (   int   numLeaves )   const;
+
     void clockwiseRotate  (     )   ;
     void prune  (   int   tolerance )   ;
+    int pruneSize( int tolerance )  const;
+    int idealPrune  (   int   numLeaves )   const;
+
   private:
     /**
      * A simple class representing a single node of a Quadtree.
@@ -60,7 +62,11 @@ class Quadtree
     RGBAPixel calAve(QuadtreeNode* qroot);
     RGBAPixel helpGetPixel(QuadtreeNode* qroot, int x, int y)const;
     void helpDecompress (QuadtreeNode* qroot, PNG & image) const;
-
+    void helpClockwiseRotate(QuadtreeNode * qroot);
+    void changeXY(QuadtreeNode * qroot, int x, int y);
+    void helpPrune(QuadtreeNode * qroot, int tolerance);
+    bool ifPruned(QuadtreeNode * qroot, int tolerance, RGBAPixel base) const;
+    int helpPruneSize(QuadtreeNode * qroot, int tolerance) const;
 
 /**** Functions for testing/grading                      ****/
 /**** Do not remove this line or copy its contents here! ****/

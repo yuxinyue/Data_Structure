@@ -111,7 +111,7 @@ RGBAPixel Quadtree::helpGetPixel(QuadtreeNode* qroot, int x, int y)const{
     if(x < qroot->x+resolution/2 && y < qroot->y+resolution/2)
         return helpGetPixel(qroot->nwChild, x, y);
     if(x >= qroot->x+resolution/2 && y < qroot->y+resolution/2)
-        return helpGetPixel(qroot->nwChild, x, y);
+        return helpGetPixel(qroot->neChild, x, y);
     if(x < qroot->x+resolution/2 && y >= qroot->y+resolution/2)
         return helpGetPixel(qroot->swChild, x, y);
     if(x >= qroot->x+resolution/2 && y >= qroot->y+resolution/2)
@@ -206,6 +206,7 @@ bool Quadtree::ifPruned(QuadtreeNode * qroot, int tolerance, RGBAPixel base) con
 }
 
 int Quadtree::pruneSize( int tolerance )  const{
+    if (root == NULL) return 0;
     return helpPruneSize(root, tolerance);
 }
 

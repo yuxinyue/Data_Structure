@@ -1,8 +1,8 @@
-Grading r40552 by xyu69 committed on Sat Oct 29 18:11:18 CDT 2016
+Grading r41537 by xyu69 committed on Sun Oct 30 20:24:13 CDT 2016
 Monad Autograder
-Testing mp5 at 2016-10-30 01:25:03
+Testing mp5 at 2016-10-31 02:03:28
 
-"Computer Science is no more about computers than astronomy is about telescopes." ~ E. Dijkstra
+"First, solve the problem. Then, write the code." ~ John Johnson
 
 Setting up test environment...
 Compiling...
@@ -28,7 +28,7 @@ test_assign_op_4 . . . . . [1 pts] - passed
 test_getPixel_1  . . . . . [1 pts] - passed
 test_getPixel_2  . . . . . [2 pts] - passed
 test_getPixel_3  . . . . . [2 pts] - passed
-test_getPixel_4  . . . . . [2 pts] - FAILED
+test_getPixel_4  . . . . . [2 pts] - passed
 test_decompress_unpruned_1 [1 pts] - passed
 test_decompress_unpruned_2 [1 pts] - passed
 test_decompress_unpruned_3 [1 pts] - passed
@@ -47,7 +47,7 @@ test_prune_4 . . . . . . . [5 pts] - passed
 test_prune_copy  . . . . . [2 pts] - passed
 test_prune_rotate  . . . . [2 pts] - passed
 test_prune_getPixel  . . . [3 pts] - passed
-test_pruneSize_1 . . . . . [2 pts] - FAILED
+test_pruneSize_1 . . . . . [2 pts] - passed
 test_pruneSize_2 . . . . . [2 pts] - passed
 test_pruneSize_3 . . . . . [2 pts] - passed
 test_pruneSize_4 . . . . . [2 pts] - passed
@@ -64,5 +64,5 @@ test_const_correctness . . [4 pts] - passed
 
 Total score...
 ================================================================
-TOTAL SCORE: 96
+TOTAL SCORE: 100
 

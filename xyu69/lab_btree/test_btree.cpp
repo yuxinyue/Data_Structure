@@ -1,10 +1,33 @@
 #include <cstring>
 #include <stdexcept>
-
+#include <queue>
 #include "btree.h"
 
 using namespace std;
+/*
+template <class K,class V>
+void print_tree(BTree<K,V> &b){
+   queue<typename BTree<K,V>::BTreeNode*> q;
+   q.push(b.root);
+   q.push(NULL);
+   while (!q.empty()){
+        typename BTree<K,V>::BTreeNode* node = q.front();
+        q.pop();
+        if (node==NULL){
+            cout<<endl;
+        }else{
+            cout<<*node;
+            if (!node->is_leaf)
+            for (int i=0;i<(int)node->children.size();i++){
+                q.push(node->children[i]);
+            }
+            q.push(NULL);
+        }
+   }
+   cout<<endl;
 
+}
+*/
 template <class K, class V>
 void do_inserts(vector<pair<K, V>>& data, BTree<K, V>& b)
 {
@@ -57,10 +80,13 @@ void small_btree_small_order()
     vector<pair<int, int>> data
         = {{1, 5}, {4, 7}, {5, 43}, {-43, 3}, {99, 2}, {23, 7}, {3, 2}, {9, 4}};
     BTree<int, int> b(3);
+    //cout<<__LINE__<<endl;
     do_inserts(data, b);
+    //cout<<__LINE__<<endl;
     verify_finds(data, b);
     b.find(-999);
-    b.is_valid(3);
+    //cout<<b.is_valid(3)<<endl;
+    //cout<<*(b.root->children[0]->children[0])<<endl;
 }
 
 void large_btree_small_order()
@@ -105,6 +131,7 @@ void generic_test(int order, int n)
     cout << "Testing sequential data..." << endl;
     auto data = make_int_data(n, false);
     do_inserts(data, b);
+   // print_tree(b);
     verify_finds(data, b);
     cout << "BTree is valid? " << b.is_valid(order) << endl;
     b.clear();
@@ -112,6 +139,7 @@ void generic_test(int order, int n)
     cout << "Testing random data..." << endl;
     data = make_int_data(n, true);
     do_inserts(data, b);
+    //print_tree(b);
     verify_finds(data, b);
     cout << "BTree is valid? " << b.is_valid(order) << endl << endl;
 }

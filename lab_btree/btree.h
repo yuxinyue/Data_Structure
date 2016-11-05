@@ -148,7 +148,7 @@ class BTree
             return lhs == rhs.key;
         }
     };
-
+  
     /**
      * A class for the basic node structure of the BTree. A node contains
      * two vectors, one with DataPairs representing the data, and one of
@@ -226,8 +226,9 @@ class BTree
 
     unsigned int order;
     BTreeNode* root;
+public:
 
-  public:
+    
     /**
      * Constructs a default, order 64 BTree.
      */
@@ -352,7 +353,26 @@ template <class T, class C>
 size_t insertion_idx(const std::vector<T>& elements, const C& val)
 {
     /* TODO Your code goes here! */
-    return 5;
+	
+    if (elements.size()==0) return 0;
+	int low = 0;
+	int high = elements.size()-1;
+
+	int mid;
+
+	while(low < high){
+		mid = (low + high)/2;
+		if(elements[mid] == val)
+			return mid;
+		if(val < elements[mid]){
+			high = mid;
+		}
+		else{
+			low = mid + 1;
+		}
+	}
+    if (elements[low]<val) return low+1;
+	return low;
 }
 
 #include "btree_given.cpp"

@@ -1,8 +1,8 @@
-Grading r48833 by enx-cs225autograder committed on Wed Nov  9 00:33:43 CST 2016
+Grading r48926 by enx-cs225autograder committed on Thu Nov 10 00:41:49 CST 2016
 Monad Autograder
-Testing mp6 at 2016-11-10 00:38:23
+Testing mp6 at 2016-11-11 00:39:59
 
-"Find your points of interest, compute HOG features, bung them into a classifier, and see what you get." ~ D.A. Forsyth
+"**** ******** **** nickels!!!" ~ Chase Geigle
 
 Setting up test environment...
 Compiling...

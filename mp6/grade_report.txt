@@ -1,8 +1,8 @@
-Grading r48926 by enx-cs225autograder committed on Thu Nov 10 00:41:49 CST 2016
+Grading r49302 by enx-cs225autograder committed on Fri Nov 11 00:43:36 CST 2016
 Monad Autograder
-Testing mp6 at 2016-11-11 00:39:59
+Testing mp6 at 2016-11-12 00:36:45
 
-"**** ******** **** nickels!!!" ~ Chase Geigle
+"The most exciting phrase to hear in science - the one that heralds new discoveries - is not 'Eureka!' but 'That's funny....'" ~ Isaac Asimov
 
 Setting up test environment...
 Compiling...

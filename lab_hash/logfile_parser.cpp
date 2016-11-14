@@ -69,6 +69,22 @@ LogfileParser::LogfileParser(const string& fname) : whenVisitedTable(256)
          * this problem. This should also build the uniqueURLs member
          * vector as well.
          */
+        //whenVisitedTable[ll.customer] = 
+
+        string customer = ll.customer;
+        string url = ll.url;
+        time_t date = ll.date;
+        if ( ! pageVisitedTable.keyExists(url) ){
+            pageVisitedTable[url] = true;
+            uniqueURLs.push_back(url);
+        } 
+        string key = customer+url;
+        if ( ! whenVisitedTable.keyExists(key) ){
+            whenVisitedTable[key] = date;
+        }else{
+            time_t oldDate = whenVisitedTable.find(key);
+            if (!(oldDate >= date)) whenVisitedTable[key] = date;
+        }
     }
     infile.close();
 }
@@ -86,10 +102,10 @@ bool LogfileParser::hasVisited(const string& customer, const string& url) const
      * @todo Implement this function.
      */
 
-    (void) customer; // prevent warnings... When you implement this function, remove this line.
-    (void) url;      // prevent warnings... When you implement this function, remove this line.
-
-    return true; // replaceme
+    //(void) customer; // prevent warnings... When you implement this function, remove this line.
+    //(void) url;      // prevent warnings... When you implement this function, remove this line.
+     return whenVisitedTable.keyExists(customer+url); 
+    //return true; // replaceme
 }
 
 /**
@@ -109,9 +125,9 @@ time_t LogfileParser::dateVisited(const string& customer,
      * @todo Implement this function.
      */
 
-    (void) customer; // prevent warnings... When you implement this function, remove this line.
-    (void) url;      // prevent warnings... When you implement this function, remove this line.
-
+    //(void) customer; // prevent warnings... When you implement this function, remove this line.
+    //(void) url;      // prevent warnings... When you implement this function, remove this line.
+     if (hasVisited(customer,url) ) return whenVisitedTable.find(customer+url);
     return time_t(); // replaceme
 }
 

@@ -7,10 +7,11 @@
  * @date Summer 2012
  */
 #include "lphashtable.h"
-
+#include <iostream>
 using hashes::hash;
 using std::pair;
-
+using std::cout;
+using std::endl;
 template <class K, class V>
 LPHashTable<K, V>::LPHashTable(size_t tsize)
 {
@@ -31,6 +32,7 @@ LPHashTable<K, V>::~LPHashTable()
 {
     for (size_t i = 0; i < size; i++)
         delete table[i];
+
     delete[] table;
     delete[] should_probe;
 }
@@ -85,9 +87,20 @@ void LPHashTable<K, V>::insert(K const& key, V const& value)
      *  0.7). **Do this check *after* increasing elems!!** Also, don't
      *  forget to mark the cell for probing with should_probe!
      */
+    elems++;
+    if(shouldResize()){
+        resizeTable();
+    }
+    size_t idx = hash(key, size);
+    while (should_probe[idx]){
+        idx = (idx + 1) % size;
+    }
+    should_probe[idx] = true;
+    pair<K, V>* p = new pair<K, V>(key, value);
+    table[idx] = p;
+    //(void) key;   // prevent warnings... When you implement this function, remove this line.
+    //(void) value; // prevent warnings... When you implement this function, remove this line.
 
-    (void) key;   // prevent warnings... When you implement this function, remove this line.
-    (void) value; // prevent warnings... When you implement this function, remove this line.
 }
 
 template <class K, class V>
@@ -129,7 +142,7 @@ V LPHashTable<K, V>::find(K const& key) const
 template <class K, class V>
 V& LPHashTable<K, V>::operator[](K const& key)
 {
-    // First, attempt to find the key and return its value by reference
+    // First, attempt to find the keyf and return its value by reference
     int idx = findIndex(key);
     if (idx == -1) {
         // otherwise, insert the default value and return it
@@ -180,8 +193,8 @@ void LPHashTable<K, V>::resizeTable()
             temp[idx] = table[i];
             should_probe[idx] = true;
         }
-    }
 
+    }
     delete[] table;
     // don't delete elements since we just moved their pointers around
     table = temp;

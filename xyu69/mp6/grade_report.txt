@@ -1,8 +1,8 @@
-Grading r49760 by enx-cs225autograder committed on Sat Nov 12 00:40:13 CST 2016
+Grading r50233 by enx-cs225autograder committed on Sun Nov 13 00:37:34 CST 2016
 Monad Autograder
-Testing mp6 at 2016-11-13 00:33:58
+Testing mp6 at 2016-11-14 01:08:30
 
-"The most amazing achievement of the computer software industry is its continuing cancellation of the steady and staggering gains made by the computer hardware industry." ~ Henry Petroski
+"To iterate is human, to recurse divine." ~ L. Peter Deutsch
 
 Setting up test environment...
 Compiling...

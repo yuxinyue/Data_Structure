@@ -75,8 +75,15 @@ void SCHashTable<K, V>::remove(K const& key)
      * Please read the note in the lab spec about list iterators and the
      * erase() function on std::list!
      */
-
-    (void) key; // prevent warnings... When you implement this function, remove this line.
+	size_t i = hash(key, size);
+	for(auto it = table[i].begin(); it != table[i].end(); i++){
+		if(it->first == key){
+			table[i].erase(it);
+			elems--;
+			break;
+		}	
+	}	
+    // prevent warnings... When you implement this function, remove this line.
 }
 
 template <class K, class V>
@@ -144,4 +151,23 @@ void SCHashTable<K, V>::resizeTable()
      *
      * @hint Use findPrime()!
      */
+	size_t newSize = findPrime(2*size);
+	list<pair<K, V>> * newTable = new list<pair<K, V>>[newSize];
+	for(int i = 0; i < (int)size; i++){
+        /*
+		for(auto it = table[i].begin(); it != table[i].end(); it++){
+			newTable[i].push_back(*it);
+		}
+        */
+         list<pair<K,V>> l = table[i];
+        while ( !l.empty() ){
+            pair<K,V> p = l.front();
+            l.pop_front();
+            size_t index = hash(p.first, newSize);
+            newTable[index].push_front(p);
+        }
+	}
+    delete[] table; //
+	table = newTable;
+    size = newSize;
 }

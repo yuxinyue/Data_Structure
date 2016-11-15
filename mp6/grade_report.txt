@@ -1,8 +1,8 @@
-Grading r50233 by enx-cs225autograder committed on Sun Nov 13 00:37:34 CST 2016
+Grading r51539 by xyu69 committed on Mon Nov 14 19:56:43 CST 2016
 Monad Autograder
-Testing mp6 at 2016-11-14 01:08:30
+Testing mp6 at 2016-11-15 00:37:35
 
-"To iterate is human, to recurse divine." ~ L. Peter Deutsch
+"I think Microsoft named .NET so it wouldn't show up in a Unix directory listing." ~ Oktal
 
 Setting up test environment...
 Compiling...
@@ -33,12 +33,12 @@ testRandom1Ctor . . . . . . [3 pts]  - passed
 testRandom1NNS  . . . . . . [3 pts]  - passed
 testRandom2Ctor . . . . . . [3 pts]  - passed
 testRandom2NNS  . . . . . . [3 pts]  - passed
-testCheckeredMosaic . . . . [12 pts] - FAILED
-testPrimaryColorMosaic  . . [6 pts]  - FAILED
-testRandomMosaic  . . . . . [6 pts]  - FAILED
+testCheckeredMosaic . . . . [12 pts] - passed
+testPrimaryColorMosaic  . . [6 pts]  - passed
+testRandomMosaic  . . . . . [6 pts]  - passed
 
 
 Total score...
 ================================================================
-TOTAL SCORE: 76
+TOTAL SCORE: 100
 

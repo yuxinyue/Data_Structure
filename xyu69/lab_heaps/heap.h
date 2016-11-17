@@ -182,6 +182,8 @@ class heap
      *  bubbled up the tree.
      */
     void heapifyUp(size_t currentIdx);
+
+    size_t getSize() const;
 };
 
 #include "heap.cpp"

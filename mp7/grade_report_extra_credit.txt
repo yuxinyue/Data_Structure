@@ -1,0 +1,24 @@
+Grading r55023 by xyu69 committed on Mon Nov 28 11:54:59 CST 2016
+Monad Autograder
+Testing mp7.1 at 2016-11-30 00:43:17
+
+"The most exciting phrase to hear in science - the one that heralds new discoveries - is not 'Eureka!' but 'That's funny....'" ~ Isaac Asimov
+
+Setting up test environment...
+Compiling...
+================================================================
+
+
+Running tests...
+================================================================
+addElements1 . . . . [20 pts] - passed
+addElements2 . . . . [20 pts] - passed
+testFindAndSetUnion1 [20 pts] - passed
+testFindAndSetUnion2 [20 pts] - passed
+testFindAndSetUnion3 [20 pts] - passed
+
+
+Total score...
+================================================================
+TOTAL SCORE: 100
+

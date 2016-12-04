@@ -16,6 +16,7 @@
 using std::stack;
 using std::queue;
 using std::unordered_map;
+using std::sort;
 
 /**
  * This is a namespace that provides various functions for
@@ -42,7 +43,7 @@ namespace GraphTools
     void findMST(Graph& graph);
 
     // define any helper functions here:
-
+    void initialization(Graph & graph);
 }
 
 #endif

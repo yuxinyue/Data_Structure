@@ -1,17 +1,6 @@
 #include "maze.h"
 #define mp make_pair
 
-void reden(RGBAPixel* pixel){
-	pixel->red = 255;
-	pixel->green = 0;
-	pixel->blue = 0;
-}
-
-void whiten(RGBAPixel* pixel){
-	pixel->red = 255;
-	pixel->green = 255;
-	pixel->blue = 255;
-}
 
 /*
 bool SquareMaze::operater==(square  & other);
@@ -249,48 +238,58 @@ PNG* SquareMaze::drawMaze () const{
 	return image; 
 }
 
-
-PNG* SquareMaze::drawMazeWithSolution (){
-	PNG* result = drawMaze();
-	vector<int> solution = solveMaze();
-	int x = 5;
-	int y = 5; 
-	for (size_t i = 0; i < solution.size();i++){
-		int dir = solution[i];
-		if (dir == 0){
-			for (int k =0;k <= 10;k++){
-				reden((*result)(x+k,y));
-			}
-			x += 10;
-		}
-		if (dir == 1){
-			for (int k =0;k <= 10;k++){
-				reden((*result)(x,y+k));
-			}
-			y += 10;
-		}
-		if (dir == 2){
-			for (int k =0;k <= 10;k++){
-				reden((*result)(x-k,y));
-			}
-			x -= 10;
-		}
-		if (dir == 3){
-			for (int k =0;k <= 10;k++){
-				reden((*result)(x,y-k));
-			}
-			y -= 10;
-		}
-	}
-	x=(x-5)/10;
-	y=(y-5)/10;
-	for (int k =1;k<=9;k++){
-		whiten((*result)(x*10+k,(y+1)*10));
-	}
-	return result;
-
+void SquareMaze::setRed(PNG & image, int x, int y){
+	image(x,y)->red = 255;
+	image(x,y)->green = 0;
+	image(x,y)->blue = 0;
 }
 
+PNG* SquareMaze::drawMazeWithSolution (){
+	PNG* image = drawMaze();
+	vector<int> vec = solveMaze();
+	int x = 5;
+	int y = 5;
+	setRed(*image, 5, 5);
+	for(int i = 0; i < (int)vec.size(); i++){
+		if(vec[i] == 0){
+			int j;
+			for(j = x + 1; j <= x + 10; j++){
+				setRed(*image, j, y);
+			}
+			x = j-1;
+		}
+		if(vec[i] == 1){
+			int j;
+			for(j = y + 1; j <= y + 10; j++){
+				setRed(*image, x, j);
+			}
+			y = j-1;
+		}
+		if(vec[i] == 2){
+			int j;
+			for(j = x - 1; j >= x - 10; j--){
+				setRed(*image, j, y);
+			}
+			x = j+1;
+		}
+		if(vec[i] == 3){
+			int j;
+			for(j = y - 1; j >= y - 10; j--){
+				setRed(*image, x, j);
+			}
+			y = j+1;
+		}		
+	}
+	x = x - 5;
+	y = y + 5;
+	for(int i = 1; i < 10; i++){
+		(*image)(x + i, y)->red = 255;
+		(*image)(x+i, y)->green = 255;
+		(*image)(x+i,y)->blue = 255;
+	}
+	return image;
+
+}
 void SquareMaze::clear(){
 	for(int i = 0; i < grid_width; i++){
 		delete [] grid[i];

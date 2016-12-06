@@ -10,6 +10,9 @@
 #include <cstdlib> 
 #include <ctime> 
 #include <queue>
+#include <unordered_map>
+#include <map>
+#include <stack>
 
 #include <iostream>     // std::cout
 #include <algorithm>    // std::random_shuffle
@@ -17,6 +20,7 @@
 #include <ctime>        // std::time
 #include <cstdlib>      // std::rand, std::srand
 using namespace std;
+
 
 
 class SquareMaze{
@@ -39,12 +43,26 @@ private:
 		bool right;
 		int  x_axis;
 		int  y_axis;
+		bool operator==(const square  & other) const{
+			return this->x_axis == other.x_axis && this->y_axis == other.y_axis;
+		}
+
+		bool operator<(const square  & other ) const{
+			if(x_axis<other.x_axis) return true;
+			if (x_axis==other.x_axis && y_axis>other.y_axis) return true;
+			return false;
+		}
+		bool operator>(const square  & other ) const{
+			if(x_axis>other.x_axis) return true;
+			if (x_axis==other.x_axis && y_axis<other.y_axis) return true;
+			return false;
+		}
 	};
-	square** grid;
-	int grid_width;
-	int grid_height;
+		square** grid;
+		int grid_width;
+		int grid_height;
 
-	void clear();
-
+		void clear();
+	
 };
 #endif

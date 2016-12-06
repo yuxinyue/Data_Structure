@@ -35,7 +35,7 @@ public:
 
 	PNG* drawMaze () const; 
 	PNG* drawMazeWithSolution ();
-	
+	void setRed(PNG & image, int x, int y);
 private:
 	class square{
 	public:

@@ -1,0 +1,15 @@
+Exam 4 report for  Xinyue  Yu
+          Problem | Score
+  ----------------+------
+     mc-cpp4-003b |   4
+     mc-cpp4-003j |   4
+     mc-cpp4-004f |   0
+     mc-cpp4-005e |   0
+     mc-cpp4-006g |   0
+     mc-cpp4-007g |   4
+  ----------------+------
+         first-05 | 4.81 / 13
+        second-01 | 13.00 / 13
+  ----------------+------
+Total: 29.81 (=59.62 percent) 
+

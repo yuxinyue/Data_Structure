@@ -1,8 +1,27 @@
 #include "maze.h"
+#define mp make_pair
 
+void reden(RGBAPixel* pixel){
+	pixel->red = 255;
+	pixel->green = 0;
+	pixel->blue = 0;
+}
 
+void whiten(RGBAPixel* pixel){
+	pixel->red = 255;
+	pixel->green = 255;
+	pixel->blue = 255;
+}
+
+/*
+bool SquareMaze::operater==(square  & other);
+	{
+		return this->x_axis == otehr.x_axis && this->y_axis == other.y_axis;
+	}
+*/
 SquareMaze::SquareMaze (){
 	/*nothing*/
+	grid = NULL;
 }
 SquareMaze::~SquareMaze (){
 	clear();
@@ -25,8 +44,8 @@ void SquareMaze::makeMaze (int width, int height){
 		for(int y=0; y < height; y++){
 			grid[x][y].down = true;
 			grid[x][y].right = true;
-			x_axis = x;
-			y_axis = y;
+			grid[x][y].x_axis = x;
+			grid[x][y].y_axis = y;
 		}
 	}
 
@@ -90,21 +109,99 @@ void SquareMaze::setWall (int x, int y, int dir, bool exists){
 vector<int> SquareMaze::solveMaze (){
 	//vector<int> * best_vec;
 	int best_dis = 0;
-
+	square theEnd;
 	vector<int> vec;
-	for(int i = 0; i < grid_width; i++){
-		square start = grid[0][0];
-		square end = grid[i][height-1];
+	stack<int> s;
+	square curr_s;
+		square start = grid[0][0];   
 		queue<square> q;
 		q.push(start);
-		int dis = 0;
+		map<square, int> dis;
+		map<square, square> preSquare;
+		map<pair<int,int>, bool> visited;
+		map<square, int> preDir;
+        
+		for(int i = 0; i < grid_width; i++){
+			for(int j = 0; j < grid_height; j++){
+				visited[mp(i,j)] = false;
+			}
+		}
+		visited[mp(0,0)] = true;
+		//cout<<__LINE__<<endl;
 		while(! q.empty()){
 			square curr = q.front();
 			q.pop();
-			if()
-		}
+			//cout<<curr.x_axis<<" "<<curr.y_axis<<endl;
 
+			if(canTravel(curr.x_axis, curr.y_axis, 0) && !visited[mp(curr.x_axis + 1,curr.y_axis)]){
+				square next0 = grid[curr.x_axis + 1][curr.y_axis];	
+				q.push(next0);
+				visited[mp(curr.x_axis + 1,curr.y_axis)] = true;
+				preSquare[next0] = curr;
+				preDir[next0] = 0;
+				dis[next0] = dis[curr] + 1;
+				//cout<<0<<endl;
+			}
+			if(canTravel(curr.x_axis, curr.y_axis, 1) && !visited[mp(curr.x_axis,curr.y_axis + 1)]){
+				square next1 = grid[curr.x_axis][curr.y_axis + 1];
+				q.push(next1);
+				visited[ mp(curr.x_axis,curr.y_axis + 1)] = true;
+				preSquare[next1] = curr;
+				preDir[next1] = 1;
+				dis[next1] = dis[curr] + 1;
+				//cout<<1<<endl;
+			}
+
+			if(canTravel(curr.x_axis, curr.y_axis, 2) && !visited[mp(curr.x_axis - 1,curr.y_axis)]){
+				square next2 = grid[curr.x_axis - 1][curr.y_axis];
+				q.push(next2);
+				visited[mp(curr.x_axis - 1,curr.y_axis)] = true;
+				preSquare[next2] = curr;
+				preDir[next2] = 2;
+				dis[next2] = dis[curr] + 1;
+				//cout<<2<<endl;
+			}
+			if(canTravel(curr.x_axis, curr.y_axis, 3) && !visited[mp(curr.x_axis,curr.y_axis - 1)]){
+				square next3 = grid[curr.x_axis][curr.y_axis - 1];
+				q.push(next3);
+				visited[mp(curr.x_axis,curr.y_axis - 1)] = true;
+				preSquare[next3] = curr;
+				preDir[next3] = 3;
+				dis[next3] = dis[curr] + 1;
+				//cout<<3<<endl;
+			}
+			//getchar();
+		}
+		//cout<<__LINE__<<endl;
+		for(int i = 0; i < grid_width; i++){
+			square end = grid[i][grid_height - 1];
+			//cout<<end.x_axis<<" "<<end.y_axis<<" "<<dis[end]<<endl;
+			if(dis[end] > best_dis){
+				best_dis = dis[end];
+				theEnd = end;
+	    	}
+			if(dis[end] == best_dis){
+				if(end.x_axis < theEnd.x_axis){
+					theEnd = end;
+				}
+			}
+		}	
+	//cout<<__LINE__<<endl;
+	curr_s = theEnd;
+	//cout<<start.x_axis<<" "<<start.y_axis<<endl;
+	//cout<<curr_s.x_axis<<" "<<curr_s.y_axis<<endl;
+	while(!( curr_s == start)){
+		s.push(preDir[curr_s]);
+		curr_s = preSquare[curr_s];
 	}
+	while(!s.empty()){
+		vec.push_back(s.top());
+		s.pop();
+	}
+	//cout<<"Solution:"<<endl;
+	//for (int i =0;i<(int)vec.size();i++)
+		//cout<<vec[i]<<endl;
+	return vec;
 }
 
 PNG* SquareMaze::drawMaze () const{
@@ -154,7 +251,44 @@ PNG* SquareMaze::drawMaze () const{
 
 
 PNG* SquareMaze::drawMazeWithSolution (){
-	return new PNG();
+	PNG* result = drawMaze();
+	vector<int> solution = solveMaze();
+	int x = 5;
+	int y = 5; 
+	for (size_t i = 0; i < solution.size();i++){
+		int dir = solution[i];
+		if (dir == 0){
+			for (int k =0;k <= 10;k++){
+				reden((*result)(x+k,y));
+			}
+			x += 10;
+		}
+		if (dir == 1){
+			for (int k =0;k <= 10;k++){
+				reden((*result)(x,y+k));
+			}
+			y += 10;
+		}
+		if (dir == 2){
+			for (int k =0;k <= 10;k++){
+				reden((*result)(x-k,y));
+			}
+			x -= 10;
+		}
+		if (dir == 3){
+			for (int k =0;k <= 10;k++){
+				reden((*result)(x,y-k));
+			}
+			y -= 10;
+		}
+	}
+	x=(x-5)/10;
+	y=(y-5)/10;
+	for (int k =1;k<=9;k++){
+		whiten((*result)(x*10+k,(y+1)*10));
+	}
+	return result;
+
 }
 
 void SquareMaze::clear(){
